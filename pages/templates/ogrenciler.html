@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Öğrenciler</title>
+</head>
+<body>
+<table align=center>
+<tr><th>No</th><th>Ad</th><th>Soyad</th></tr>
+ {% for ogr in ogrenci_list %}
+<tr>
+<td>{{ forloop.counter }}</td><td>{{ ogr.ad }}</td><td>{{ ogr.soyad }}</td></tr>
+ {% endfor %}
+</table>
+</body>
+</html>
