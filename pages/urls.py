@@ -5,9 +5,9 @@ from . import views
 from django.contrib import admin
 urlpatterns = [
     path('', views.anasayfa),
-    path('giris', views.index),
+    path('giris', views.log),
     path('kayit', views.kayit),
-    path('log', views.log),
+    path('login', views.log),
     path('ogrenci/', views.ogrenci),
     path('ogrenci-liste', views.ogrenci_listesi),
     path('index', views.anasayfa),

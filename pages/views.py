@@ -31,19 +31,18 @@ def log(request):
 def kayit(request):
    #return render(request, 'log.html',{'resim':resim})
    kullanici_ad= Kullanici.objects.all()
-   
-   errors=[]
+   errors=""
    if request.method == "POST":
       ad = request.POST['kullanici']
       sifre = request.POST['sifre']
       mail=request.POST['mail']
       for kullanici in kullanici_ad:
          if ad== kullanici.kullanici_adi:
-            if sifre==kullanici.sifre:
-               return render(request,'log.html',{'success':True})
+            errors="Bu kullanıcı adı kullanılıyor"
+            return render(request,'kayit.html',{'errors':errors})
          if mail==kullanici.eposta:
             errors="Bu mail adresi kullanılıyor"
-            return render(request, 'log.html',{'errors':errors})
+            return render(request, 'kayit.html',{'errors':errors})
       if len(ad)>0:
          kullanici_ekle=Kullanici(kullanici_adi=ad,eposta=mail,sifre=sifre)
          kullanici_ekle.save() 
