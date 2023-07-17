@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Giriş Sistemi</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+  body {
+    background-image: url("{% static "images/wallpaperbetter.jpg" %}");
+    background-size: cover;
+  }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  {% if errors %}
+  <p style="color:red">
+ <ul style="color:red">{{ errors}}</ul>
+  </p>
+ {% endif %}
+ {% if success %}
+  <p style="color:red">
+ <ul style="color:red">{{ success}}</ul>
+  </p>
+ {% endif %}
+
+  <div class="container">
+    <div class="tab-content">
+      <div id="login" class="tab-pane fade show active">
+        <h3>Giriş Yap</h3>
+
+        <form action="/log" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="kullanici">Kullanıcı Adı</label>
+            <input type="text" name="kullanici" class="form-control" id="logintext" placeholder="Kullanıcı Adınızı girin" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Şifre</label>
+            <input type="password" name="sifre" class="form-control" id="loginPassword" placeholder="Şifrenizi girin" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

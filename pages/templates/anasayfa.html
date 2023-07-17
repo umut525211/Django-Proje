@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"/>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Sekme Başlığı</title>
     </head>
     <body>
-        <h1>Anasayfa</h1>
-        <p>Bu bir paragraf alanıdır. Buraya genellikle sayfadaki uzun yazılar gelir.</p>
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container">
+            <a href="/" class="navbar-brand">WebSite </a>
+
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a href="/kurs/list" class="nav-link">Kurslar</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/log" class="nav-link">Giriş Yap</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ogrenci" class="nav-link">Öğrenci Ekle</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ogrenci-liste" class="nav-link">Öğrenci Listesi</a>
+                </li>
+            </ul>
+        </div>  
+    </nav>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <br>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">Programlama</a>
+                    <a href="#" class="list-group-item list-group-item-action">Web Geliştirme</a>
+                    <a href="#" class="list-group-item list-group-item-action">Mobil Geliştirme</a>
+            </div>
+            <div class="col-19"></div>
+        </div>
+    
+    
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 </html>

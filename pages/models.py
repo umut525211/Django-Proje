@@ -6,4 +6,9 @@ class Ogrenci(models.Model):
 class Ders(models.Model):
     ad = models.CharField(max_length=100)
     ogrenciler = models.ManyToManyField(Ogrenci)
+    
+class Kullanici(models.Model):
+    kullanici_adi=models.CharField(max_length=30)
+    eposta=models.CharField(max_length=30)
+    sifre=models.CharField(max_length=15)
 
