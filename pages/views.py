@@ -9,15 +9,21 @@ def anasayfa(request):
  return render(request, 'anasayfa.html')
 
 def sayfa1(request):
- return render(request, 'siteler/eyfel.html')  
+   template = loader.get_template('siteler/eyfel.html')
+   return HttpResponse(template.render())
 def sayfa2(request):
- return render(request, 'siteler/cin.html')  
+   template = loader.get_template('siteler/cin.html')
+   return HttpResponse(template.render())
+ #return render(request, 'siteler/cin.html')  
 def sayfa3(request):
- return render(request, 'siteler/rodos.html')  
+   template = loader.get_template('siteler/rodos.html')
+   return HttpResponse(template.render())
 def sayfa4(request):
- return render(request, 'siteler/machu.html')  
+   template = loader.get_template('siteler/machu.html')
+   return HttpResponse(template.render())
 def sayfa5(request):
- return render(request, 'siteler/tacmahal.html')  
+   template = loader.get_template('siteler/tacmahal.html')
+   return HttpResponse(template.render())
 
 def log(request):
    resim="images/wallpaperbetter.jpg"
