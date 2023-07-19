@@ -7,7 +7,18 @@ from pages.models import Ogrenci,Ders,Kullanici
 from django.template import loader
 def anasayfa(request):
  return render(request, 'anasayfa.html')
-   
+
+def sayfa1(request):
+ return render(request, 'siteler/eyfel.html')  
+def sayfa2(request):
+ return render(request, 'siteler/cin.html')  
+def sayfa3(request):
+ return render(request, 'siteler/rodos.html')  
+def sayfa4(request):
+ return render(request, 'siteler/machu.html')  
+def sayfa5(request):
+ return render(request, 'siteler/tacmahal.html')  
+
 def log(request):
    resim="images/wallpaperbetter.jpg"
    #return render(request, 'log.html',{'resim':resim})

@@ -1,0 +1,458 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodos Heykeli</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" />
+
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+
+</head>
+<body>
+    
+    <!-- Header -->
+       <header id="header" class="shadow bg-light">
+           <nav class="container navbar">
+               <a href="/" class="nav-brand text-dark">
+                    WebSite
+                </a>
+
+                <!-- toggle button -->
+                <button class="toggle-button">
+                    <span><i class="fas fa-bars"></i></span>
+                </button>
+
+                <!-- collapse on toggle button click -->
+                <div class="collapse">
+                    <ul class="navbar-nav">
+                        <a href="/" class="nav-link">Anasayfa</a>
+                        <a href="/kurs/list" class="nav-link">Kurslar</a>
+                        <a href="/login" class="nav-link">Giriş Yap</a>
+                        <a href="/kayit" class="nav-link">Kayıt Olma</a>
+                        <a href="/ogrenci" class="nav-link">Öğrenci Ekle</a>
+                        <a href="/ogrenci-liste" class="nav-link">Öğrenci Listesi</a>
+                        
+                    </ul>
+                </div>
+
+                  <!-- collapse on toggle button click -->
+                  <div class="collapse">
+                      <ul class="navbar-nav">
+                            <div class="search-box">
+                                <a href="#" class="nav-link"><i class="fas fa-search"></i></a>
+                            </div>
+                            <a href="#" class="nav-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="nav-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="nav-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="nav-link"><i class="fab fa-dribbble"></i></a>
+                      </ul>
+                  </div>
+           </nav>
+       </header>
+    <!-- .Header -->
+
+    <!-- Main Site -->
+       <main id="site-main">
+
+            <!-- Post Content -->
+                <section class="container">
+                    <article id="post">
+                    <!-- article heading -->
+                        <div class="headings text-center">
+                            <div class="category">
+                                <a href="#" class="nav-link">Rodos Heykeli</a>
+                            </div>
+
+                            <div class="title">
+                                <h2 class="text-title text-dark display-1">Rodos Heykeli Hakkında Bilgiler; Nerededir, Mimarisi ve Tarihçesi</h2>
+                            </div>
+
+                            <div class="meta">
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-user text-primary"></i> Erkan Karaca
+                                </a>
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-clock text-primary"></i>  9 Ocak 2017
+                                </a>
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-comments text-primary"></i> 0
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- thumbnail  -->
+                        <div class="thumbnail mt-3">
+                            <img src="../static/images/anasayfa/rodos2.jpg" class="thumbnail" alt="">
+                        </div>
+
+                        <!-- content -->
+                        <div class="content text-dark display-2 secondary-title mt-3">
+                            <p>Dünyanın Yedi Harikasından biri olan Rodos Heykeli, 32 metre boyunda, tunçtan yapılmış dev bir heykeldir. Yunan Güneş Tanrısı Helios'un heykeli olarak tasvir edilen bu yapıt, Rodos adasında bulunmaktaydı. Yapımı 12 yıl süren heykelin görüntüsü, Newyork’taki Özgürlük Anıtı’nı andırmaktadır. Rivayete göre Tanrı Helios'un elinde, bir meşale bulunuyordu. Heykelin bacaklarının arasından, gemiler geçecek kadar da dev boyuttaydı.</p>
+                            <p>Rodos Heykeli, Rodos şehrine ait Rodos adasında, limanın girişinde yer aldığına inanılan heykeldir. Heykel, Yunan Güneş Tanrısı Helios’a aittir. Milattan önce 305-304 yılları arasındaki bir yıllık kuşatmanın sonunda kurtulan Rodos adası sakinleri, sevinçlerini ve zaferlerini heykel dikerek göstermek istemişler.</p>
+                            <p>Rodos Heykeli, Dünyanın Yedi Harikasından biri olarak kabul edilmiştir. Rodos Heykeli'nin inşası tam olarak 12 yıl sürmüştür. Heykel milattan önce 282 yılında tamamen bitmiştir. Güneş tanrısı Helios’a ait olan heykel, heykeltıraş Lindoslu Khares tarafından yapılmıştır.</p>
+                            <p>Rodos heykeli 32 metre uzunluğunda bir heykeldi ve tunçtan yapılmıştır. Heykelin tunçtan yapılabilmesi için, halkın ellerinde bulunan tunçtan araç ve gereçlerin eritildiği yönünde bilgiler bulunuyor. Helios'un elinde bir meşale tuttuğuna inanılan heykel bu görüntüsü ile Newyork’taki Özgürlük Anıtı'nı andırıyordu.</p>
+                        
+                        </dvi>   
+                        <div class="thumbnail mt-3">
+                            <img src="../static/images/anasayfa/rodos3.jpg" class="thumbnail" alt="">
+                        </div>   
+                        <div class="content text-dark display-2 secondary-title mt-3">
+                            <h1>Rodos Heykeli Nerededir?</h1>
+                            <p>Ege denizi üzerinde bulunan on iki adanın en büyük olanı Rodos adasıdır. Antik Çağ'ın yedi harikasından biri olan Rodos Heykeli de, bu adada yer almaktadır. Yunanistan topraklarına ait Meis adası elenirse; en doğuda kalan adadır. Günümüze en yakın tarihte, 2004 yılında yapılan sayıma göre adanın nüfusu 130.000 olarak belirlenmiştir. 130.000 nüfusun 55.000 kadarı Rodos şehrinde yaşamlarını sürdürmektedir. Ayrıca adada 3.500 kadar bir Türk azınlık da bulunuyor. Adanın iç kesimleri ormanlık alanlardır. Rodos adasının genel görünümünün Yunanistan’dan çok Türkiye’nin batı kesimindeki şehirleri andırdığı söylenir. Adanın, Rodos haricinde en önemli merkezi de güneydoğu tarafında yer alan Lindos, sahil kasabasıdır.</p>
+                            <h1>Rodos Heykeli'nin Mimarisi</h1>
+                            <p>Milattan önce 282 yılında yapımı bitirilen Rodos Heykeli 32 metre uzunluğunda, tamamen tunçtan yapılmış bir heykeldi. Lindoslu Khares'in elinden çıkan heykelin bir ayağının limanın bir tarafında diğer ayağının limanın diğer tarafında olduğuna inanılıyordu. Yine inanışa göre heykelin bacaklarının arasından gemiler geçecek kadar başarılı bir mimariye sahipti ama zamanın şartlarının buna elverişli olmadığı da bilinen bir durumdu. Heykel yapıldığı günden itibaren devasa boyutlarıyla limana giriş çıkış yapan gemilere yol gösterici bir niteliğe sahip olmuştur. Rodos Heykeli milattan önce yaşanan bir deprem sonucunda; heykelin en zayıf noktalarından biri olan bacak bölgesinden kırılmış ve yan yatarak yıkılmıştır. Rodos Heykeli bilinene göre 50 yıl kadar sağlam şekilde ayakta kalmıştır. Birkaç asır da bu şekilde zeminde kalmıştır.</p>
+                            <h1>Rodos Heykeli'nin Tarihçesi</h1>
+                            <p>Rodos şehrinin ilk sakinleri Dor’lardır. Dor’lar, denizci kavimlerden bir tanesiydi. Heykelini yaptırdıkları Helios’a taparlardı. Dor’lar milattan önce 3. asır içerisinde büyük bir medeniyet kurdular ve Mısır-Finike ürünlerinin ticaretini yaparak zengin bir kavim haline geldiler. Onların döneminde ada tam bir kültür-sanat merkezi haline geldi. Dor kavmi, Makedonya ile yaptıkları savaştan sonra tanrılarına teşekkür etmek amacıyla bu heykeli yapmaya karar verdiler. Dor kavmi yapılan bu heykelin adayı tüm kötülüklerden koruduğuna inanmaya başladılar. Ayrıca heykel, beraberliği de sembolize eden bir yapıydı.</p>
+                        </div> 
+                    </article>
+
+                    <!-- post footer -->
+                    <div class="post-footer mb-3">
+                        <div class="post-tags d-flex flex-wrap justify-content-center">
+                            <a href="#" class="nav-link btn bg-light">Tarihi</a>
+                            <a href="#" class="nav-link btn bg-light">İnşa</a>
+                            <a href="#" class="nav-link btn bg-light">Savunma</a>
+                            <a href="#" class="nav-link btn bg-light">Turistik</a>
+                            <a href="#" class="nav-link btn bg-light">Uzun</a>
+                        </div>
+
+                        <div class="post-author text-center">
+                            <div class="author-avatar">
+                                <img src="../static/images/anasayfa/face/sabah.jpg" class="rounded" alt="">
+                            </div>
+
+                            <div class="author-info py-2">
+                                <h3 class="text-dark">Sabah Gazetesi</h3>
+
+                                <p class="text-secondary secondary-title">
+                                    Çin Seddi Neden Yapıldı? Çin Seddi Ne Zaman, Nerede ve Kime Karşı Yapılmıştır?</p>
+
+                                <div class="post-tags d-flex flex-wrap justify-content-center">
+                                    <a href="#" class="nav-link"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="nav-link"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="nav-link"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="nav-link"><i class="fab fa-dribbble"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- post related -->
+                        <div class="post-realted py-2">
+                            <div class="row justify-content-center">
+                                <div class="prev">
+                                    <div class="py-2">
+                                        <a href="#" class="display-2 text-dark">
+                                            <i class="fas fa-chevron-left"></i> 
+                                            Önceki Sayfa
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <a href="/tac-mahal">
+                                                <img src="../static/images/anasayfa/tac.jpg" class="object-fit" alt="">
+                                            </a>
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="/tac-mahal" class="link text-primary text-secondary">Tac Mahal</a>
+                                                </div>
+                                                <a href="/tac-mahal" class="text-title display-1 text-dark">
+                                                    Daimi Aşka Adanan Bir Anıt: Tac Mahal’in Hikayesi Nedir?
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="next text-right">
+                                    <div class="py-2">
+                                        <a href="#" class="display-2 text-dark">
+                                            Sonraki Sayfa
+                                            <i class="fas fa-chevron-right"></i> 
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <a href="/cin-seddi">
+                                                <img src="../static/images/anasayfa/cin2.jpg" class="object-fit" alt="">
+                                            </a>
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="/cin-seddi" class="link text-primary text-secondary">Çin Seddi</a>
+                                                </div>
+                                                <a href="/cin-seddi" class="text-title display-1 text-dark">
+                                                    Çin Seddi Neden Yapıldı? Çin Seddi Ne Zaman, Nerede ve Kime Karşı Yapılmıştır?
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-comments py-2">
+                            <h3 class="text-center display-1 secondary-title py-2">3 Comments</h3>
+    
+                            <div class="comment-details">
+                                <div class="comment-item py-2">
+                                    <div class="d-flex">
+                                        <div class="avatar px-2">
+                                            <img src="../static/images/anasayfa/face/images.jpg" class="rounded" alt="">
+                                        </div>
+                                        <div class="comment-content">
+                                            <h5 class="display-2 m-0">Ali</h5>
+                                            <p class="title-secondary text-dark">
+                                                Güzel Olmuş</p>
+                                        </div>
+                                    </div>
+                                     <!-- comment reply -->
+                                     <div class="reply py-2">
+                                        <div class="d-flex">
+                                            <div class="avatar px-2">
+                                                <img src="../static/images/anasayfa/face/face2.jpg" class="rounded" alt="">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h5 class="display-2 m-0">Veli</h5>
+                                                <p class="title-secondary text-dark">
+                                                    Kesinlikle </p>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                                <div class="comment-item py-2">
+                                    <div class="d-flex">
+                                        <div class="avatar px-2">
+                                            <img src="../static/images/anasayfa/face/face3.jpg" class="rounded" alt="">
+                                        </div>
+                                        <div class="comment-content">
+                                            <h5 class="display-2 m-0">Aslı</h5>
+                                            <p class="title-secondary text-dark">
+                                            Beğendim</p>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <h3 class="text-center display-1 secondary-title py-2">Leave Comment</h3>
+    
+                            <div class="comment-form">
+                                <div class="d-flex justify-content-between flex-wrap">
+                                    <input type="text" class="form-control " placeholder="Name">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="text" class="form-control" placeholder="Website">
+                                </div>
+                                <textarea class="form-control mt-3" placeholder="Message" rows="10"></textarea>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary display-2 text-light mt-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- .post footer -->
+
+                </section>
+            <!-- .Post Content -->
+
+            <!-- Swiper slider -->
+            <section class="slider">
+                <div class="container">
+
+                    <!-- Slider main container -->
+                        <div class="swiper-container">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                <!-- Slides -->
+                                <div class="swiper-slide">
+                                    <a href="/cin-seddi">
+                                        <img src="../static/images/anasayfa/cin3.jpg" class="img-fluid" alt="">
+                                        <img src="../static/images/anasayfa/cin4.jpg" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                                 <!-- Slides -->
+                                  <!-- Slides -->
+                                <div class="swiper-slide">
+                                    <a href="/rodos-heykeli">
+                                        <img src="../static/images/anasayfa/rodos2.jpg" class="img-fluid" alt="">
+                                        <img src="../static/images/anasayfa/rodos3.jpg" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                                 <!-- Slides -->
+                                  <!-- Slides -->
+                                <div class="swiper-slide">
+                                    <a href="/machu-picchu">
+                                        <img src="../static/images/anasayfa/mac.jpg" class="img-fluid" alt="">
+                                        <img src="../static/images/anasayfa/mac3.jpg" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                                    <!-- Slides -->
+                                <!-- Slides -->
+                                <div class="swiper-slide">
+                                    <a href="/tac-mahal">
+                                        <img src="../static/images/anasayfa/tac2.jpg" class="img-fluid" alt="">
+                                        <img src="../static/images/anasayfa/tac3.jpg" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                                    <!-- Slides -->
+                                <!-- Slides -->
+                                <div class="swiper-slide">
+                                    <a href="/eyfel">
+                                        <img src="../static/images/anasayfa/paris2.jpg" class="img-fluid" alt="">
+                                        <img src="../static/images/anasayfa/paris3.jpg" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                                    <!-- Slides -->
+                                 
+                            </div>
+                        </div>
+
+                </div>
+            </section>
+             <!-- .Swiper slider -->
+
+       </main>
+    <!-- .Main Site -->
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <h2 class="footer-title secondary-title">Hakkımızda</h2>
+
+                    <div class="secondary-title text-secondary">
+                         <p class="mt-2 ">
+                             Bu sitede Dünya'nın eski yapılarının hikayesini paylaştım.</p>
+                         
+                         <address>
+                             <i class="fas fa-map-marker-alt text-primary"></i> 
+                             Sancaktepe
+                         </address>
+
+                         <div class="phone">
+                             <i class="fas fa-mobile text-primary"></i> 
+                             512 345 67 89
+                         </div>
+
+                         <div class="email">
+                             <i class="fas fa-envelope text-primary"></i> 
+                             umut67614@gmail.com
+                         </div>
+
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h2 class="footer-title secondary-title">Makaleler</h2>
+
+                    <div class="feature-post">
+                        <div class="flex-item">
+                            <article class="article">
+                                <div class="d-flex">
+                                    <a href="/tac-mahal">
+                                        <img src="../static/images/anasayfa/tac.jpg" class="object-fit px-1" alt="">
+                                        <div class="px-1">
+                                            <a href="/tac-mahal" class="text-title display-2 text-dark">
+                                             Daimi Aşka Adanan Bir Anıt: Tac Mahal’in Hikayesi Nedir?
+                                            </a>
+                                            <p class="secondary-title text-secondary display-3">
+                                                 <span><i class="far fa-clock text-primary"></i>  Şubat 21, 2018 10:10 </span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="flex-item">
+                         <article class="article">
+                             <div class="d-flex">
+                                 <a href="/eyfel">
+                                     <img src="../static/images/anasayfa/paris.jpg" class="object-fit px-1" alt="">
+                                     <div class="px-1">
+                                         <a href="/eyfel" class="text-title display-2 text-dark">
+                                             Eyfel Kulesi'nin ilginç hikayesi: Geçici olarak yapılmıştı
+                                         </a>
+                                         <p class="secondary-title text-secondary display-3">
+                                              <span><i class="far fa-clock text-primary"></i>  Nisan 25, 2021 09:36</span>
+                                         </p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </article>
+                          </div>
+                          <div class="flex-item">
+                             <article class="article">
+                                 <div class="d-flex">
+                                     <a href="/cin-seddi">
+                                         <img src="../static/images/anasayfa/cin2.jpg" class="object-fit px-1" alt="">
+                                         <div class="px-1">
+                                             <a href="/cin-seddi" class="text-title display-2 text-dark">
+                                                 Çin Seddi Neden Yapıldı? Çin Seddi Ne Zaman, Nerede ve Kime Karşı Yapılmıştır?
+                                             </a>
+                                             <p class="secondary-title text-secondary display-3">
+                                                  <span><i class="far fa-clock text-primary"></i> Nisan 17, 2023 14:40 </span>
+                                             </p>
+                                         </div>
+                                     </a>
+                                 </div>
+                             </article>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                     <h2 class="footer-title secondary-title">Etiketler</h2>
+
+                     <div class="tags">
+                         <div class="d-flex flex-wrap">
+                             <a href="#" class="nav-link btn bg-light">Anıt</a>
+                             <a href="#" class="nav-link btn bg-light">Eski</a>
+                             <a href="#" class="nav-link btn bg-light">Turistik</a>
+                             <a href="#" class="nav-link btn bg-light">Dünya Harikaları</a>
+                             <a href="#" class="nav-link btn bg-light">Gezi</a>
+                         </div>
+                     </div>
+
+                     <h2 class="footer-title secondary-title mt-2">Sosyal Hesaplar</h2>
+
+                     <div class="tags social">
+                         <div class="d-flex flex-wrap">
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-facebook-f"></i></a>
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-twitter"></i></a>
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-instagram"></i></a>
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-dribbble"></i></a>
+                         </div>
+                     </div>
+
+                </div>
+            </div>
+
+            <!-- copyrights  -->
+            <div class="copyrights">
+                <p class="text-center text-secondary display-2">
+                     © 2023 <a href="#" class="text-primary">Umut Aydın</a> - Tarafından Yapıldı.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- .footer -->
+
+
+    <!-- masonry libray for horizontal grid -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js"></script>
+
+    <!-- custom javascript main.js file -->
+    <script src="../static/js/main.js"></script>
+</body>
+</html>
