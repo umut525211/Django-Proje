@@ -11,16 +11,20 @@ def anasayfa(request):
 def sayfa1(request):
    template = loader.get_template('siteler/eyfel.html')
    return HttpResponse(template.render())
+
 def sayfa2(request):
    template = loader.get_template('siteler/cin.html')
    return HttpResponse(template.render())
  #return render(request, 'siteler/cin.html')  
+
 def sayfa3(request):
    template = loader.get_template('siteler/rodos.html')
    return HttpResponse(template.render())
+
 def sayfa4(request):
    template = loader.get_template('siteler/machu.html')
    return HttpResponse(template.render())
+
 def sayfa5(request):
    template = loader.get_template('siteler/tacmahal.html')
    return HttpResponse(template.render())
