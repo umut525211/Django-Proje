@@ -14,8 +14,15 @@
              <ul class="navbar-nav">
                  <a href="/" class="nav-link">Anasayfa</a>
                  <a href="/kurs/list" class="nav-link">Kurslar</a>
-                 <a href="/login" class="nav-link">Giriş Yap</a>
-                 <a href="/kayit" class="nav-link">Kayıt Olma</a>
+                 {% if Giris == None %}
+                        <a href="/login" class="nav-link">Giris</a>
+                        <a href="/kayit" class="nav-link">Kayıt Olma</a>
+                        {% endif %} 
+                        {% if Giris != None %}
+                        <a href="/profil" class="nav-link">{{Giris}}</a>
+                        <a href="/çıkış" class="nav-link">Çıkış Yap</a>
+                    {% endif %}
+                        
                  <a href="/ogrenci" class="nav-link">Öğrenci Ekle</a>
                  <a href="/ogrenci-liste" class="nav-link">Öğrenci Listesi</a>
                  

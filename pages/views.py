@@ -1,41 +1,50 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import *
 from django import template
 from django.template.loader import get_template
 from pages.models import Ogrenci,Ders,Kullanici
 from django.template import loader
+from django.contrib.auth import authenticate
+from django.contrib.auth.hashers import check_password
+from django.template import loader
+
 def anasayfa(request):
- return render(request, 'anasayfa.html')
+   Giris=request.session.get('kullanici_adi', None)
+   return render(request, 'anasayfa.html', {'Giris': Giris})
 
 def sayfa1(request):
-   template = loader.get_template('siteler/eyfel.html')
-   return HttpResponse(template.render())
+   Giris=request.session.get('kullanici_adi', None)
+   return render(request, 'siteler/eyfel.html', {'Giris': Giris})
 
 def sayfa2(request):
-   template = loader.get_template('siteler/cin.html')
-   return HttpResponse(template.render())
- #return render(request, 'siteler/cin.html')  
+   Giris=request.session.get('kullanici_adi', None)
+   return render(request, 'siteler/cin.html', {'Giris': Giris})
+  
+
+def cik(request):
+   Giris=request.session['kullanici_adi'] =None
+   return render(request, 'anasayfa.html', {'Giris': Giris})
 
 def sayfa3(request):
-   template = loader.get_template('siteler/rodos.html')
-   return HttpResponse(template.render())
+   Giris=request.session.get('kullanici_adi', None)
+   return render(request, 'siteler/rodos.html', {'Giris': Giris})
 
 def sayfa4(request):
-   template = loader.get_template('siteler/machu.html')
-   return HttpResponse(template.render())
-
+   Giris=request.session.get('kullanici_adi', None)
+   return render(request, 'siteler/machu.html', {'Giris': Giris})
+   
 def sayfa5(request):
-   template = loader.get_template('siteler/tacmahal.html')
-   return HttpResponse(template.render())
+   Giris=request.session.get('kullanici_adi', None)
+   return render(request, 'siteler/tacmahal.html', {'Giris': Giris})
 
-def log(request):
-   resim="images/wallpaperbetter.jpg"
+#def log2(request):
    #return render(request, 'log.html',{'resim':resim})
    kullanici_ad= Kullanici.objects.all()
    success=""
-   errors=[]
+   errors=""
    if request.method == "POST":
+      
       ad = request.POST['kullanici']
       sifre = request.POST['sifre']
       for kullanici in kullanici_ad:
@@ -43,11 +52,41 @@ def log(request):
             if sifre==kullanici.sifre:
                success="*Giriş Başarılı"
                return render(request,'log.html',{'success':success})
-
-         else:
-            errors="Kullanıcı Adı ya da Şifre Yanlış"
+            else:
+               errors="Kullanıcı Adı ya da Şifre Yanlış"
    
    return render(request, 'log.html',{'errors': errors})
+
+def log(request):
+   #return render(request, 'log.html',{'resim':resim})
+   kullanici_ad= Kullanici.objects.all()
+   success=""
+   errors=""
+   if request.method == "POST":
+      ad = request.POST['kullanici']
+      sifre = request.POST['sifre']
+      try:
+            # Kullanıcıyı veritabanında adına göre getirin
+            kullanici = Kullanici.objects.get(kullanici_adi=ad)
+            
+            # Girilen şifreyi doğrulayın
+            if check_password(sifre, kullanici.sifre):
+                # Şifre doğruysa oturum aç
+                request.session['kullanici_id'] = kullanici.id
+                request.session['kullanici_adi'] = kullanici.kullanici_adi
+                Giris= kullanici.kullanici_adi
+                
+                return render(request, 'anasayfa.html', {'Giris': Giris})
+                return redirect('/')  # Kullanıcı başarıyla giriş yaptıysa, ana sayfaya yönlendirin.
+            else:
+                # Şifre yanlışsa hata mesajı gösterin
+                errors = "Geçersiz şifre."
+      except Kullanici.DoesNotExist:
+            # Kullanıcı adı bulunamazsa hata mesajı gösterin
+            errors = "Kullanıcı adı bulunamadı."
+   else:
+        errors = None
+   return render(request, 'log.html', {'errors': errors})
 
 def kayit(request):
    #return render(request, 'log.html',{'resim':resim})
@@ -80,12 +119,6 @@ def index(request):
      else:
         return HttpResponse('Merhaba %s'%isim)
   return render(request, 'index.html', {'error': error})
-
-def iletisim(request):
-    return HttpResponse('iletisim')
-
-def hakkimizda(request):
-    return HttpResponse("hakkimizda")
 
 def ogrenci(request):
    errors=[]
