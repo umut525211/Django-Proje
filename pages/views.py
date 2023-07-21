@@ -20,11 +20,10 @@ def sayfa1(request):
 def sayfa2(request):
    Giris=request.session.get('kullanici_adi', None)
    return render(request, 'siteler/cin.html', {'Giris': Giris})
-  
 
 def cik(request):
-   Giris=request.session['kullanici_adi'] =None
-   return render(request, 'anasayfa.html', {'Giris': Giris})
+   request.session['kullanici_adi'] =None
+   return redirect('/')
 
 def sayfa3(request):
    Giris=request.session.get('kullanici_adi', None)
@@ -74,9 +73,6 @@ def log(request):
                 # Şifre doğruysa oturum aç
                 request.session['kullanici_id'] = kullanici.id
                 request.session['kullanici_adi'] = kullanici.kullanici_adi
-                Giris= kullanici.kullanici_adi
-                
-                return render(request, 'anasayfa.html', {'Giris': Giris})
                 return redirect('/')  # Kullanıcı başarıyla giriş yaptıysa, ana sayfaya yönlendirin.
             else:
                 # Şifre yanlışsa hata mesajı gösterin
@@ -106,7 +102,7 @@ def kayit(request):
       if len(ad)>0:
          kullanici_ekle=Kullanici(kullanici_adi=ad,eposta=mail,sifre=sifre)
          kullanici_ekle.save() 
-         return render(request, 'anasayfa.html')    
+         return redirect('/')    
    
    return render(request, 'kayit.html',{'errors': errors})
 
