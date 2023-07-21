@@ -12,6 +12,8 @@ urlpatterns = [
     path('rodos-heykeli', views.sayfa3),
     path('machu-picchu', views.sayfa4),
     path('tac-mahal', views.sayfa5),
+    path('bilgi', views.bilgi),
+    path('profil', views.profil),
     path('çıkış', views.cik),
     path('giris', views.log),
     path('kayit', views.kayit),

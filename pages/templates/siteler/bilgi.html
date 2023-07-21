@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kayıt Sistemi</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+  body {
+    background-image: url("{% static "../static/images/wallpaperbetter.jpg" %}");
+    background-size: cover;
+  }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  {% if errors %}
+  <p style="color:red">
+ <ul style="color:red">{{ errors}}</ul>
+  </p>
+ {% endif %}
+<div class="container">
+    
+    <div class="tab-content">
+ <div id="register" class="tab-pane fade show active">
+    <h3>Bilgilerini Güncelle</h3>
+    <form action="bilgi" method="post">
+        {% csrf_token %}
+      <div class="form-group">
+        <label >Telefon</label>
+        <input type="text" class="form-control" name="telefon" value='{{kullanici.telefon}}' placeholder="Telefon Numaranızı girin" required>
+      </div>
+      <div class="form-group">
+        <label >Adres</label>
+        <input type="textbox" class="form-control" name="adres" placeholder="Adresinizi girin" value='{{kullanici.adres}}' required>
+      </div>
+      <div class="form-group">
+        <label >Yaş</label>
+        <input type="text" class="form-control"  name="yas" placeholder="Yaşınızı Girin" value='{{kullanici.yas}}' required>
+      </div>
+      <div class="form-group">
+        <label >İl</label>
+        <input type="text" class="form-control"  name="il" placeholder="İlinizi Girin" value='{{kullanici.il}}' required>
+      </div>
+      <div class="form-group">
+        <label >Hakkınızda(İsteğe Bağlı)</label>
+        <input type="text" class="form-control"  name="hak" placeholder="Hakkınızda Bilgi Giriniz" value='{{kullanici.hak}}'>
+      </div>
+      <div class="form-group">
+        <label>İş</label>
+        <input type="text" class="form-control" name="is" placeholder="İşinizi Girin" value='{{kullanici.isi}}' required>
+      </div>
+      <button type="submit" class="btn btn-primary">Güncelle</button>
+    </form>
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

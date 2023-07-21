@@ -58,8 +58,6 @@ def sayfa5(request):
 
 def log(request):
    #return render(request, 'log.html',{'resim':resim})
-   kullanici_ad= Kullanici.objects.all()
-   success=""
    errors=""
    if request.method == "POST":
       ad = request.POST['kullanici']
@@ -101,10 +99,44 @@ def kayit(request):
             return render(request, 'kayit.html',{'errors':errors})
       if len(ad)>0:
          kullanici_ekle=Kullanici(kullanici_adi=ad,eposta=mail,sifre=sifre)
+         kullanici_ekle.adres=""
+         kullanici_ekle.telefon=""
+         kullanici_ekle.yas=""
+         kullanici_ekle.il=""
+         kullanici_ekle.isi=""
+         kullanici_ekle.hak=""
          kullanici_ekle.save() 
          return redirect('/')    
    
    return render(request, 'kayit.html',{'errors': errors})
+
+def bilgi(request):
+   ad=request.session.get('kullanici_adi', None)
+   kullanici = Kullanici.objects.get(kullanici_adi=ad)
+   #return render(request, 'log.html',{'resim':resim})s
+   errors=""
+   if request.method == "POST":
+      tel = request.POST['telefon']
+      adres = request.POST['adres']
+      yas=request.POST['yas']
+      il=request.POST['il']
+      isi=request.POST['is']
+      hak=request.POST['hak']
+      try:
+            # Kullanıcıyı veritabanında adına göre getirin
+            kullanici = Kullanici.objects.get(kullanici_adi=ad)
+            kullanici.adres=adres
+            kullanici.telefon=tel
+            kullanici.yas=yas
+            kullanici.il=il
+            kullanici.isi=isi
+            kullanici.hak=hak
+            kullanici.save() 
+            return redirect('/')    
+      except Kullanici.DoesNotExist:
+            # Kullanıcı adı bulunamazsa hata mesajı gösterin
+            errors = "Giriş Yapın"
+   return render(request, 'siteler/bilgi.html',{'kullanici':kullanici,'errors': errors})
 
 def index(request):
   error=False
@@ -139,3 +171,15 @@ def ogrenci_listesi(request):
    context = {'ogrenci_list': ogrenci_listesi}
    html = t.render(context, request)
    return HttpResponse(html)
+
+def profil(request):
+   ad=request.session.get('kullanici_adi', None)
+   errors=""
+   try:
+         # Kullanıcıyı veritabanında adına göre getirin
+         kullanici = Kullanici.objects.get(kullanici_adi=ad)
+         return render(request, 'siteler/profil.html',{'kullanici': kullanici,'Giris': ad})   
+   except Kullanici.DoesNotExist:
+            # Kullanıcı adı bulunamazsa hata mesajı gösterin
+            errors = "Giriş Yapın"
+            return render(request, 'siteler/profil.html',{'errors': errors})
