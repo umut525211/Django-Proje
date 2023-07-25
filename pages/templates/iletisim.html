@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodos Heykeli</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" />
+
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+
+</head>
+<body>
+    {% if errors %}
+    <p style="color:red">
+   <ul style="color:red">{{ errors}}</ul>
+    </p>
+   {% endif %}
+   {% if success %}
+    <p style="color:red">
+   <ul style="color:red">{{ success}}</ul>
+    </p>
+   {% endif %} 
+    <!-- Header -->
+    {% include 'siteler/header.html' %} 
+    <h3 class="text-center display-1 secondary-title py-2">Leave Comment</h3>
+    <form action="/iletisim" method="post">
+        {% csrf_token %}
+        <div class="comment-form">
+            <div class="d-flex justify-content-between flex-wrap">
+            
+            <input type="text" name="istek" class="form-control" placeholder="Site Hakkında İstekmi Şikayetmi">
+            <textarea class="form-control mt-3" placeholder="Mesajınızı Girin" name="mesaj" rows="10"></textarea></div>
+        
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary display-2 text-light mt-2">Submit</button>
+            </div>
+        </div>
+    </form>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+        <!-- swiper slider cdn -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js"></script>
+    
+        <!-- custom javascript main.js file -->
+        <script src="../static/js/main.js"></script>
+    </body>
+    </html>

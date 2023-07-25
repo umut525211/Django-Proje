@@ -10,7 +10,6 @@
     background-image: url("{% static "../static/images/wallpaperbetter.jpg" %}");
     background-size: cover;
   }
-
     .container {
       max-width: 400px;
       margin: 0 auto;
@@ -32,7 +31,7 @@
     <div class="tab-content">
  <div id="register" class="tab-pane fade show active">
     <h3>Bilgilerini Güncelle</h3>
-    <form action="bilgi" method="post">
+    <form action="bilgi" method="post" enctype="multipart/form-data">
         {% csrf_token %}
       <div class="form-group">
         <label >Telefon</label>
@@ -58,7 +57,11 @@
         <label>İş</label>
         <input type="text" class="form-control" name="is" placeholder="İşinizi Girin" value='{{kullanici.isi}}' required>
       </div>
-      <button type="submit" class="btn btn-primary">Güncelle</button>
+      <div class="form-group">
+        <label>Resim</label>
+        <input type="file" class="form-control" name="resim" placeholder="Resim" value='{{kullanici.resim}}'>
+      </div>
+      <button type="submit" class="btn btn-primary">Kaydet</button>
     </form>
   </div>
 </div>

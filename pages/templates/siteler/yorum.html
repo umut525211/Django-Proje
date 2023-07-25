@@ -1,0 +1,25 @@
+   
+<h3 class="text-center display-1 secondary-title py-2">Yorumlar</h3>
+
+<div class="comment-details">
+    {%for x in yorumlar%}
+        {% if x.site == site %}
+            {%for a in kullanici%}
+                {% if x.kullanici == a.kullanici_adi %}
+                    <div class="comment-item py-2">
+                        <div class="d-flex">
+                            <div class="avatar px-2">
+                                 <img src="{{a.resim}}" class="rounded" alt="">
+                            </div>
+                            <div class="comment-content">
+                            <h5 class="display-2 m-0">{{a.kullanici_adi}}</h5>
+                            <p class="title-secondary text-dark">{{x.yorum}}</p>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>

@@ -10,6 +10,7 @@ urlpatterns = [
     path('eyfel', views.sayfa1),
     path('cin-seddi', views.sayfa2),
     path('rodos-heykeli', views.sayfa3),
+    path('iletisim', views.iletisim),
     path('machu-picchu', views.sayfa4),
     path('tac-mahal', views.sayfa5),
     path('bilgi', views.bilgi),

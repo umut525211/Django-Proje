@@ -97,7 +97,7 @@
 
                         <div class="post-author text-center">
                             <div class="author-avatar">
-                                <img src="../static/images/anasayfa/face/hür.jpg" class="rounded" alt="">
+                                <img src="static/images/anasayfa/face/hür.jpg" class="rounded" alt="">
                             </div>
 
                             <div class="author-info py-2">
@@ -169,24 +169,20 @@
                         </div>
 
                         <div class="post-comments py-2">
-                            <h3 class="text-center display-1 secondary-title py-2">0 Yorum</h3>
-    
+                            {% include 'siteler/yorum.html' with kullanici=kullanici yorumlar=yorumlar site=site %}
                             
-                            </div>
     
-                            <h3 class="text-center display-1 secondary-title py-2">Leave Comment</h3>
-    
+                            <h3 class="text-center display-1 secondary-title py-2">Yorum Gönder</h3>
+                            <form method="post">
+                                {% csrf_token %}
                             <div class="comment-form">
-                                <div class="d-flex justify-content-between flex-wrap">
-                                    <input type="text" class="form-control " placeholder="Name">
-                                    <input type="email" class="form-control" placeholder="Email">
-                                    <input type="text" class="form-control" placeholder="Website">
-                                </div>
-                                <textarea class="form-control mt-3" placeholder="Message" rows="10"></textarea>
+                                
+                                <textarea class="form-control mt-3" placeholder="Yorum" name="yorum" rows="10" required></textarea>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary display-2 text-light mt-2">Submit</button>
                                 </div>
                             </div>
+                        </form>
                         </div>
 
                     </div>
