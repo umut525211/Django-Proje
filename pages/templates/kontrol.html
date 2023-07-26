@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Yönetici Kontrol</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        width: 100%;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    table {
+        max-width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 3px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    img {
+        max-height: 50px;
+        max-width: 50px;
+    }
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+
+<body >
+	{% include 'siteler/header.html' %} 
+    
+    {% if rol == "yönetici" %}
+    <br><h1>Kullanıcılar</h1><br>
+    <table border="1">
+        <tr>
+            <th>Resim</th>
+            <th>Kullanıcı Adı</th>
+            <th>E-posta</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+            <th>Yaş</th>
+            <th>İl</th>
+            <th>İş</th>
+            <th>Hakkında</th>
+            <th>Rol</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for kullanici in kullanicilar %}
+        <tr>
+            <form method="post">
+               
+                {% csrf_token %}
+            <td><img src="{{ kullanici.resim.url }}" alt="Profil Resmi" height="50" width="50"></td>
+            <td><input type="text" name="adi" value="{{ kullanici.kullanici_adi }}" required></td>
+            <td><input type="text" name="mail" value="{{ kullanici.eposta }}" required></td>
+            <td><input type="text" name="tel" value="{{ kullanici.telefon }}" ></td>
+            <td><input type="text" name="adres" value="{{ kullanici.adres}}" ></td>
+            <td><input type="text" name="yas" value="{{ kullanici.yas }}" ></td>
+            <td><input type="text" name="il" value="{{ kullanici.il }}" ></td>
+            <td><input type="text" name="isi" value="{{ kullanici.isi }}"></td>
+            <td><input type="text" name="hak" value="{{ kullanici.hak }}" ></td>
+            <td><input type="text" name="roll" value="{{ kullanici.rol }}" required></td>
+            
+            <td><a href="{% url 'delete_user' site kullanici.id  %}" class="btn btn-danger">Sil</a></td>
+            <td><button type="submit" class="btn btn-primary">Güncelle</button></td>
+        </tr></form>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+
+
+	<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+	<script src="https://unpkg.com/tippy.js@4"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js"></script>
+
+    <!-- custom javascript main.js file -->
+    <script src="../static/js/main.js"></script>
+</div>	
+</body>
+
+</html>

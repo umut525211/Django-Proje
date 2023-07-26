@@ -11,7 +11,39 @@ from django.template import loader
 
 def anasayfa(request):
    Giris=request.session.get('kullanici_adi', None)
-   return render(request, 'anasayfa.html', {'Giris': Giris})
+   rol=request.session.get('rol',None)
+   return render(request, 'anasayfa.html', {'Giris': Giris,'rol':rol})
+
+def kontrol(request):
+   site="kontrol"
+   kullanicilar = Kullanici.objects.all()
+   Giris=request.session.get('kullanici_adi', None)
+   rol=request.session.get('rol',None)
+   if request.method == "POST":
+      roll=request.POST['roll']
+      ad=request.POST['adi']
+      mail=request.POST['mail']
+      tel=request.POST['tel']
+      adres=request.POST['adres']
+      yas=request.POST['yas']
+      il=request.POST['il']
+      isi=request.POST['isi']
+      hak=request.POST['hak']
+      guncel = Kullanici.objects.get(kullanici_adi=ad)
+      guncel.kullanici_adi=ad
+      guncel.telefon=tel
+      guncel.adres=adres
+      guncel.yas=yas
+      guncel.il=il
+      guncel.isi=isi
+      guncel.hak=hak
+      if roll=='yönetici' or roll=='yonetici' or roll=='Yönetici' or roll=='Yonetici':
+         guncel.rol="yönetici"
+      else:
+         guncel.rol="standart"
+      guncel.save()
+      return render(request, 'kontrol.html', {'Giris': Giris,'rol':rol,'kullanicilar':kullanicilar,'site':site})
+   return render(request, 'kontrol.html', {'Giris': Giris,'rol':rol,'kullanicilar':kullanicilar,'site':site})
 
 def sayfa1(request):
     
@@ -282,3 +314,14 @@ def delete_comment(request, x,site):
     except Yorum.DoesNotExist:
         pass
     return redirect(site)
+ 
+def delete_user(request, site,x):
+    comment_id=x
+    site="/"+site
+    try:
+        comment = Kullanici.objects.get(id=comment_id)
+        comment.delete()
+    except Kullanici.DoesNotExist:
+        pass
+    return redirect(site)
+ 
