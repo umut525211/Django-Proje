@@ -14,7 +14,9 @@ def anasayfa(request):
    return render(request, 'anasayfa.html', {'Giris': Giris})
 
 def sayfa1(request):
+    
     ad = request.session.get('kullanici_adi', None)
+    rol=request.session.get('rol',None)
     kullanici_ad = Kullanici.objects.all()
     yorumlar = Yorum.objects.all()
     site = "eyfel"
@@ -24,9 +26,9 @@ def sayfa1(request):
         if a == 1:
             return redirect('/login')
         else:
-            return render(request, 'siteler/eyfel.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+            return render(request, 'siteler/eyfel.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
     else:
-        return render(request, 'siteler/eyfel.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+        return render(request, 'siteler/eyfel.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
 
 def yorum(request, site):
     ad = request.session.get('kullanici_adi', None)
@@ -40,53 +42,57 @@ def yorum(request, site):
         return 0
 
 def sayfa2(request):
+    rol=request.session.get('rol',None)
     ad = request.session.get('kullanici_adi', None)
     kullanici_ad = Kullanici.objects.all()
     yorumlar = Yorum.objects.all()
-    site = "cin"
+    site = "cin-seddi"
 
     if request.method == "POST":
         a = yorum(request, site)
         if a == 1:
             return redirect('/login')
         else:
-            return render(request, 'siteler/cin.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar})
+            return render(request, 'siteler/cin.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
     else:
-        return render(request, 'siteler/cin.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar})
+        return render(request, 'siteler/cin.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
 
 def cik(request):
    request.session['kullanici_adi'] =None
+   request.session['rol'] =None
    return redirect('/')
 
 def sayfa3(request):
     ad = request.session.get('kullanici_adi', None)
+    rol=request.session.get('rol',None)
     kullanici_ad = Kullanici.objects.all()
     yorumlar = Yorum.objects.all()
-    site = "rodos"
+    site = "rodos-heykeli"
 
     if request.method == "POST":
         a = yorum(request, site)
         if a == 1:
             return redirect('/login')
         else:
-            return render(request, 'siteler/rodos.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+            return render(request, 'siteler/rodos.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
     else:
-        return render(request, 'siteler/rodos.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+        return render(request, 'siteler/rodos.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
   
 def sayfa4(request):
     ad = request.session.get('kullanici_adi', None)
+    rol=request.session.get('rol',None)
     kullanici_ad = Kullanici.objects.all()
     yorumlar = Yorum.objects.all()
-    site = "machu"
+    site = "machu-picchu"
 
     if request.method == "POST":
         a = yorum(request, site)
         if a == 1:
             return redirect('/login')
         else:
-            return render(request, 'siteler/machu.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+            return render(request, 'siteler/machu.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
     else:
-        return render(request, 'siteler/machu.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+        return render(request, 'siteler/machu.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
   
 def iletisim(request):
    ad=request.session.get('kullanici_adi', None)
@@ -112,18 +118,19 @@ def iletisim(request):
 
 def sayfa5(request):
     ad = request.session.get('kullanici_adi', None)
+    rol=request.session.get('rol',None)
     kullanici_ad = Kullanici.objects.all()
     yorumlar = Yorum.objects.all()
-    site = "tac"
+    site = "tac-mahal"
 
     if request.method == "POST":
         a = yorum(request, site)
         if a == 1:
             return redirect('/login')
         else:
-            return render(request, 'siteler/tacmahal.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+            return render(request, 'siteler/tacmahal.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
     else:
-        return render(request, 'siteler/tacmahal.html', {'Giris': ad, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
+        return render(request, 'siteler/tacmahal.html', {'Giris': ad,'rol':rol, 'kullanici': kullanici_ad, 'yorumlar': yorumlar,'site':site})
   
 def log(request):
    #return render(request, 'log.html',{'resim':resim})
@@ -140,6 +147,7 @@ def log(request):
                 # Şifre doğruysa oturum aç
                 request.session['kullanici_id'] = kullanici2.id
                 request.session['kullanici_adi'] = kullanici2.kullanici_adi
+                request.session['rol'] = kullanici2.rol
                 return redirect('/')  # Kullanıcı başarıyla giriş yaptıysa, ana sayfaya yönlendirin.
             else:
                 # Şifre yanlışsa hata mesajı gösterin
@@ -159,6 +167,7 @@ def kayit(request):
       ad = request.POST['kullanici']
       sifre = request.POST['sifre']
       mail=request.POST['mail']
+      rol=request.POST['rol']
       for kullanici in kullanici_ad:
          if ad== kullanici.kullanici_adi:
             errors="Bu kullanıcı adı kullanılıyor"
@@ -174,6 +183,11 @@ def kayit(request):
          kullanici_ekle.il=""
          kullanici_ekle.isi=""
          kullanici_ekle.hak=""
+         if rol=='yönetici' or rol=='yonetici' or rol=='Yönetici' or rol=='Yonetici':
+            kullanici_ekle.rol="yönetici"
+         else:
+            kullanici_ekle.rol="standart"
+            
          kullanici_ekle.resim="static/images/1.jpg"
          kullanici_ekle.save2() 
          return redirect('/')    
@@ -258,3 +272,13 @@ def profil(request):
             # Kullanıcı adı bulunamazsa hata mesajı gösterin
             errors = "Giriş Yapın"
             return render(request, 'siteler/profil.html',{'errors': errors})
+         
+def delete_comment(request, x,site):
+    comment_id=x
+    site="/"+site
+    try:
+        comment = Yorum.objects.get(id=comment_id)
+        comment.delete()
+    except Yorum.DoesNotExist:
+        pass
+    return redirect(site)

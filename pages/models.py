@@ -37,6 +37,7 @@ class Kullanici(models.Model):
     il=models.CharField(max_length=20,null=True)
     isi=models.CharField(max_length=30,null=True)
     hak=models.CharField(max_length=200,null=True)
+    rol=models.CharField(max_length=200,null=True)
     resim=models.ImageField(upload_to=resim, null=True)
   
     def save2(self, *args, **kwargs):

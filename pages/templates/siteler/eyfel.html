@@ -148,9 +148,8 @@
 
                         <div class="post-comments py-2">
                             
-                                {% include 'siteler/yorum.html' with kullanici=kullanici yorumlar=yorumlar site=site %}
+                                {% include 'siteler/yorum.html' with site=site %}
                             
-    
                             <h3 class="text-center display-1 secondary-title py-2">Yorum Gönder</h3>
                             <form method="post">
                                 {% csrf_token %}

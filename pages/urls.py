@@ -22,4 +22,5 @@ urlpatterns = [
     path('ogrenci/', views.ogrenci),
     path('ogrenci-liste', views.ogrenci_listesi),
     path('index', views.anasayfa),
+    path('delete_comment/<int:x>/<str:site>', views.delete_comment, name='delete_comment'),
 ]

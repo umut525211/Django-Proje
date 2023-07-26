@@ -16,6 +16,14 @@
                             <p class="title-secondary text-dark">{{x.yorum}}</p>
 
                     </div>
+                    
+                        {% if rol == 'yönetici' %}
+                        <form action="{% url 'delete_comment' x.id site %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    {% endif %}
+                    
                 </div>
             </div>
             {% endif %}
