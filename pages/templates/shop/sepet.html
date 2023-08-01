@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"  />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css"/>
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=2">
+<style>
+img {
+    max-height: 350px;
+    max-width: 350px;
+}</style>
+</head>
+<body>
+    {% include 'siteler/header.html' %} 
+           
+    <!-- .Header -->
+
+    <!-- Main Site -->
+       <main id="site-main">
+
+            <!-- Blog Post Section -->
+                <section id="posts">
+                    <div class="container">
+                        <div class="grid">
+                            
+{% for urunler in sepet %}
+<form  method="post" action="{% url 'sepet_cikar' urunler.id site %}">
+    {% csrf_token %}
+    <div class="grid-item">
+        <article class="article">
+            <div class="card">
+                <div class="overflow-img">
+                    <a href="#">
+                        <img src="{{urunler.resim}}" class="img-fluid" alt="">
+                    </a>
+                </div>
+                <div class="card-body text-center px-1">
+                    <a href="#" class="text-title display-1 text-dark nav-link">
+                        {{urunler.adi}}
+                    </a>
+                    <p class="secondary-title text-secondary display-3">
+                        Sepetteki Adet Sayısı: {{urunler.adet}}</p>
+                    <p class="secondary-title text-secondary display-3">
+                            1 Adet Fiyatı: {{urunler.fiyat}}</p>
+                    <p class="secondary-title text-secondary display-3">
+                            Toplam Fiyat: {{urunler.toplam}}</p>
+                        
+                    <input type="number" name="adett" min="0" value="0" max="{{urunler.adet}}"></input>
+                    
+                    <button  type="submit" class="btn">Sepetten Çıkar</button>
+                    
+                        </form>
+                    
+                </div>
+            </div>
+        </article>
+    </div>
+{% endfor %}
+        </div>
+    </div>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js"></script>
+<script src="{% static 'js/main.js' %}?v=2"></script> 
+</body>
+</html>

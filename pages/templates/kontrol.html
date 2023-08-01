@@ -3,6 +3,9 @@
 <html lang="en">
 
 <head>
+    
+        
+    
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,6 +14,7 @@
   <meta name="keywords" content="">
   <meta name="author" content="">
   <style>
+    
     body {
         font-family: Arial, sans-serif;
         margin: 20px;
@@ -23,11 +27,15 @@
     table {
         max-width: 100%;
         border-collapse: collapse;
+        margin-left:5px;
+    }
+    .table2 {
+        margin-left:10px;
     }
     th, td {
         border: 1px solid #dddddd;
         text-align: left;
-        padding: 3px;
+        padding: 2px;
     }
     th {
         background-color: #f2f2f2;
@@ -45,7 +53,7 @@
     }
 </style>
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"  />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" />
   <link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
@@ -72,7 +80,7 @@
         </tr>
         {% for kullanici in kullanicilar %}
         <tr>
-            <form method="post">
+            <form method="post" action="{% url 'kullanici_guncelle' %}">
                
                 {% csrf_token %}
             <td><img src="{{ kullanici.resim.url }}" alt="Profil Resmi" height="50" width="50"></td>
@@ -92,7 +100,33 @@
         {% endfor %}
     </table>
     {% endif %}
-
+    {% if rol == "yönetici" %}
+    <br><h1 >Ürünler</h1><br>
+    <table border="1" class="table2">
+        <tr>
+            <th>Resim</th>
+            <th>Ürün Adı</th>
+            <th>Adet</th>
+            <th>Fiyat</th>
+            
+            <th></th>
+            <th></th>
+        </tr>
+        {% for urunler in urun %}
+        <tr>
+            <form method="post" action="{% url 'urun_guncelle' urunler.id %}">
+               
+                {% csrf_token %}
+            <td><img src="{{ urunler.resim.url }}" alt="Profil Resmi" height="50" width="50"></td>
+            <td><input type="text" name="ad" value="{{ urunler.adi }}" required></td>
+            <td><input type="text" name="adet" value="{{ urunler.adet }}" required></td>
+            <td><input type="text" name="fiyat" value="{{ urunler.fiyat }}" ></td>
+            
+            <td><button type="submit" class="btn btn-primary">Güncelle</button></td>
+        </tr></form>
+        {% endfor %}
+    </table>
+    {% endif %}
 
 
 	<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>

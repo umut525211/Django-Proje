@@ -1,6 +1,7 @@
 from django.db import models
 import datetime,os
 from django.contrib.auth.hashers import make_password
+
 class Ogrenci(models.Model):
     ad = models.CharField(max_length=30)
     soyad = models.CharField(max_length=30)
@@ -10,11 +11,13 @@ class Ders(models.Model):
     ogrenciler = models.ManyToManyField(Ogrenci)
     
 def resim(instance, filename):
-    # Assuming 'kullanici_adi' is a field in the model containing the user's username
     kullanici_adi = instance.kullanici_adi
-    # Create a directory path using the user's username
     user_directory = os.path.join('static/resimler', kullanici_adi)
-    # Return the full upload path (relative to 'MEDIA_ROOT') including the original filename
+    return os.path.join(user_directory, filename)
+
+def resim2(instance, filename): 
+    adi = instance.adi
+    user_directory = os.path.join('static/urunler', adi)
     return os.path.join(user_directory, filename)
 
 class Iletisim(models.Model):
@@ -26,7 +29,23 @@ class Yorum(models.Model):
     kullanici=models.CharField(max_length=100)
     site=models.CharField(max_length=50)
     yorum=models.CharField(max_length=3000)
-       
+    
+class Urunn(models.Model):
+    adi=models.CharField(max_length=100)
+    resim=models.ImageField(upload_to=resim2, null=True)
+    adet=models.IntegerField(null=True)
+    fiyat=models.IntegerField(null=True)
+    
+class Sepet(models.Model):
+    alan=models.CharField(max_length=1000,null=True)
+    adi=models.CharField(max_length=100, null=False)
+    resim=models.CharField(max_length=1000,null=False)
+    fiyat=models.IntegerField(null=True)
+    adet=models.IntegerField(null=False)
+    toplam=models.IntegerField(null=False)
+    onay=models.IntegerField(null=False)
+    
+      
 class Kullanici(models.Model):
     kullanici_adi=models.CharField(max_length=100)
     eposta=models.CharField(max_length=30)

@@ -7,12 +7,12 @@
     <title>Ana Sayfa</title>
 
     <!-- font awesome icons cdn -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"  />
 
     <!-- swiper slider css file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css"/>
     <!-- custom style.css file -->
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
 
 </head>
 <body>
@@ -29,37 +29,34 @@
                     <span><i class="fas fa-bars"></i></span>
                 </button>
 
-                <!-- collapse on toggle button click -->
                 <div class="collapse">
                     <ul class="navbar-nav">
                         <a href="/iletisim" class="nav-link">İletişim</a>
                         {% if rol == "yönetici" %}
                         <a href="/kontrol" class="nav-link">Kontrol</a>
+                        <a href="/urun_ekle" class="nav-link">Ürün Ekle</a>
                         {% endif %}
                         {% if Giris == None %}
-                        <a href="/login" class="nav-link">Giriş Yap</a>
-                        <a href="/kayit" class="nav-link">Kayıt Ol</a>
-                        {% endif %} 
-                        {% if Giris != None %}
-                        <a href="/profil" class="nav-link">{{Giris}}</a>
-                        <a href="/bilgi" class="nav-link">Bilgileri Güncelle</a>
-                        <a href="/çıkış" class="nav-link">Çıkış Yap</a>
-                        {% endif %}
-                        
-                        
+                               <a href="/login" class="nav-link">Giris Yap</a>
+                               <a href="/kayit" class="nav-link">Kayıt Ol</a>
+                               {% endif %} 
+                               {% if Giris != None %}
+                               <a href="/profil" class="nav-link">{{Giris}}</a>
+                               <a href="/bilgi" class="nav-link">Bilgileri Güncelle</a>
+                               <a href="/çıkış" class="nav-link">Çıkış Yap</a>
+                           {% endif %}
+                                               
                     </ul>
                 </div>
-
+       
                   <!-- collapse on toggle button click -->
                   <div class="collapse">
                       <ul class="navbar-nav">
-                            <div class="search-box">
-                                <a href="#" class="nav-link"><i class="fas fa-search"></i></a>
-                            </div>
+                            
                             <a href="#" class="nav-link"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="nav-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="nav-link"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="nav-link"><i class="fab fa-dribbble"></i></a>
+                            <a href="/shop" class="nav-link"><i class="fa-solid fa-shop"></i></a>
+                            <a href="/sepetin" class="nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
                       </ul>
                   </div>
            </nav>
@@ -303,6 +300,6 @@
     <!--javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js"></script>
-        <script src="../static/js/main.js"></script>
+        <script src="{% static 'js/main.js' %}?v=1"></script> 
 </body>
 </html>

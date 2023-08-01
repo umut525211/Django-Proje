@@ -3,22 +3,59 @@ from django.shortcuts import render,redirect
 from django.http import *
 from django import template
 from django.template.loader import get_template
-from pages.models import Ogrenci,Ders,Kullanici,Iletisim,Yorum
+from pages.models import Ogrenci,Ders,Kullanici,Iletisim,Yorum,Urunn,Sepet
 from django.template import loader
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
-from django.template import loader
 
 def anasayfa(request):
    Giris=request.session.get('kullanici_adi', None)
    rol=request.session.get('rol',None)
    return render(request, 'anasayfa.html', {'Giris': Giris,'rol':rol})
 
+def shop(request):
+   Giris = request.session.get('kullanici_adi', None)
+   rol = request.session.get('rol', None)
+   site = "shop"
+   urun = Urunn.objects.all()
+   return render(request, 'shop/shop.html', {'Giris': Giris, 'rol': rol, 'urun': urun, 'site': site})
+
+def shop2(request):
+   Giris=request.session.get('kullanici_adi', None)
+   rol=request.session.get('rol',None)
+   errors=""
+   urunn=Urunn.objects.all()
+   ad=request.session.get('kullanici_adi', None)
+   kullanici = Kullanici.objects.get(kullanici_adi=ad)
+   if request.method == "POST":
+      urun = request.POST['urun_ad']
+      fiyat = request.POST['fiyat']
+      adet=request.POST['adet']
+      resim=request.FILES['resim']
+      for add in urunn :
+         if urun== add.adi:
+            errors="Bu adda ayakkabı var"
+            return render(request, 'shop/urun_ekle.html',{'kullanici':kullanici,'Giris': Giris,'rol':rol,'errors':errors})
+      urunn = Urunn(adi=urun,adet=adet,fiyat=fiyat,resim=resim )      
+      urunn.save() 
+      return redirect('/shop')    
+      
+   return render(request, 'shop/urun_ekle.html',{'kullanici':kullanici,'errors':errors,'Giris': Giris,'rol':rol})
+
 def kontrol(request):
    site="kontrol"
    kullanicilar = Kullanici.objects.all()
    Giris=request.session.get('kullanici_adi', None)
    rol=request.session.get('rol',None)
+   urunn=Urunn.objects.all()
+   return render(request, 'kontrol.html', {'Giris': Giris,'rol':rol,'kullanicilar':kullanicilar,'site':site,'urun':urunn})
+
+def kullanici_guncelle(request):
+   site="kontrol"
+   kullanicilar = Kullanici.objects.all()
+   Giris=request.session.get('kullanici_adi', None)
+   rol=request.session.get('rol',None)
+   urunn=Urunn.objects.all()
    if request.method == "POST":
       roll=request.POST['roll']
       ad=request.POST['adi']
@@ -31,6 +68,7 @@ def kontrol(request):
       hak=request.POST['hak']
       guncel = Kullanici.objects.get(kullanici_adi=ad)
       guncel.kullanici_adi=ad
+      guncel.eposta=mail
       guncel.telefon=tel
       guncel.adres=adres
       guncel.yas=yas
@@ -42,8 +80,25 @@ def kontrol(request):
       else:
          guncel.rol="standart"
       guncel.save()
-      return render(request, 'kontrol.html', {'Giris': Giris,'rol':rol,'kullanicilar':kullanicilar,'site':site})
-   return render(request, 'kontrol.html', {'Giris': Giris,'rol':rol,'kullanicilar':kullanicilar,'site':site})
+      return render(request, 'kontrol.html', {'Giris': Giris,'rol':rol,'kullanicilar':kullanicilar,'site':site,'urun':urunn}) 
+   
+def urun_guncelle(request,x):
+   gun=""
+   site="kontrol"
+   kullanicilar = Kullanici.objects.all()
+   urunn=Urunn.objects.all()
+   Giris=request.session.get('kullanici_adi', None)
+   rol=request.session.get('rol',None)
+   if request.method == "POST":
+      ad=request.POST['ad']
+      adet=request.POST['adet']
+      fiyat=request.POST['fiyat']
+      gun = Urunn.objects.get(id=x)
+      gun.adi=ad
+      gun.adet=adet
+      gun.fiyat=fiyat
+      gun.save()
+      return render(request, 'kontrol.html', {'Giris': Giris,'rol':rol,'kullanicilar':kullanicilar,'site':site,'urun':urunn}) 
 
 def sayfa1(request):
     
@@ -294,16 +349,17 @@ def ogrenci_listesi(request):
    return HttpResponse(html)
 
 def profil(request):
+   rol=request.session.get('rol',None)
    ad=request.session.get('kullanici_adi', None)
    errors=""
    try:
          # Kullanıcıyı veritabanında adına göre getirin
          kullanici = Kullanici.objects.get(kullanici_adi=ad)
-         return render(request, 'siteler/profil.html',{'kullanici': kullanici,'Giris': ad})   
+         return render(request, 'siteler/profil.html',{'kullanici': kullanici,'Giris': ad,"rol":rol})   
    except Kullanici.DoesNotExist:
             # Kullanıcı adı bulunamazsa hata mesajı gösterin
             errors = "Giriş Yapın"
-            return render(request, 'siteler/profil.html',{'errors': errors})
+            return render(request, 'siteler/profil.html',{'errors': errors,"Giris":ad,"rol":rol})
          
 def delete_comment(request, x,site):
     comment_id=x
@@ -325,3 +381,40 @@ def delete_user(request, site,x):
         pass
     return redirect(site)
  
+def sepet(request, x,site):
+   site="/"+site
+   adet = int(request.POST['adett'])
+   urunnn = Urunn.objects.get(id=x)
+   fiyat = int(urunnn.fiyat)
+   toplam = adet * fiyat
+   sepe=Sepet.objects.filter(adi=urunnn.adi).first()
+   if not sepe:
+      sepet=Sepet(adi=urunnn.adi,resim=urunnn.resim,fiyat=urunnn.fiyat,adet=adet,toplam=toplam,onay=0)
+      sepet.save()
+   else:
+      sepe.adet += adet
+      sepe.toplam=sepe.fiyat*sepe.adet
+      sepe.save()
+   return redirect(site)
+
+def sepet_cikar(request, x,site):
+   adet = int(request.POST['adett'])
+   sep = Sepet.objects.get(id=x)
+   kalan=sep.adet-adet
+   toplam =sep.fiyat*kalan
+   site="/"+site
+   if kalan==0:
+      sep.delete()
+      return redirect(site)
+   sep.adet=kalan
+   sep.toplam=toplam
+   sep.onay=0
+   sep.save()
+   return redirect(site)
+  
+def sepett(request):
+   site="sepetin"
+   Giris=request.session.get('kullanici_adi', None)
+   rol=request.session.get('rol',None)
+   sepet= Sepet.objects.filter(onay=0)
+   return render(request, 'shop/sepet.html', {'Giris': Giris,'rol':rol,"sepet":sepet,"site":site})

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"  />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css"/>
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
+<style>
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 80px; /* Header ile arasındaki boşluğu ayarlayabilirsiniz */
+      }
+      
+      /* Form alanı stilleri */
+      .form-group {
+        margin-bottom: 15px;
+      }
+      
+      /* Input boyutları */
+      .form-control {
+        width: 300px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      
+      /* Buton boyutları */
+      .btn-primary {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+</style>
+</head>
+<body>
+    {% include 'siteler/header.html' %} 
+    <br>
+    {% if errors %}
+    <p style="color:red">
+   <ul style="color:red">{{ errors}}</ul>
+    </p>
+   {% endif %}
+    <div class="form-container">
+        <form  method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label>Ürün Adı</label><br>
+            <input type="text" class="form-control" name="urun_ad" placeholder="Ürün Adını Girin" required>
+          </div>
+          <div class="form-group">
+            <label>Fiyatı</label><br>
+            <input type="number" class="form-control" name="fiyat" placeholder="Fiyatını Giriniz" required>
+          </div>
+          <div class="form-group">
+            <label>Adetini Giriniz</label><br>
+            <input type="number" class="form-control" name="adet" placeholder="Adetini Giriniz" required>
+          </div>
+          <div class="form-group">
+            <label>Ürün Resimi</label><br>
+            <input type="file" class="form-control" name="resim" placeholder="Resim">
+          </div>
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+{% include 'siteler/footer.html' %} 
+    <!-- .footer -->
+    <!--javascript-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js"></script>
+        <script src="{% static 'js/main.js' %}?v=2"></script> 
+</body>
+</html>

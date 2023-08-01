@@ -1,3 +1,5 @@
+
+
 <header id="header" class="shadow bg-light">
     <nav class="container navbar">
         <a href="/" class="nav-brand text-dark">
@@ -16,6 +18,7 @@
                  <a href="/iletisim" class="nav-link">İletişim</a>
                  {% if rol == "yönetici" %}
                  <a href="/kontrol" class="nav-link">Kontrol</a>
+                 <a href="/urun_ekle" class="nav-link">Ürün Ekle</a>
                  {% endif %}
                  {% if Giris == None %}
                         <a href="/login" class="nav-link">Giris Yap</a>
@@ -26,21 +29,19 @@
                         <a href="/bilgi" class="nav-link">Bilgileri Güncelle</a>
                         <a href="/çıkış" class="nav-link">Çıkış Yap</a>
                     {% endif %}
-                        
-                 
+                                        
              </ul>
          </div>
 
            <!-- collapse on toggle button click -->
            <div class="collapse">
                <ul class="navbar-nav">
-                     <div class="search-box">
-                         <a href="#" class="nav-link"><i class="fas fa-search"></i></a>
-                     </div>
+                     
                      <a href="#" class="nav-link"><i class="fab fa-facebook-f"></i></a>
                      <a href="#" class="nav-link"><i class="fab fa-twitter"></i></a>
-                     <a href="#" class="nav-link"><i class="fab fa-instagram"></i></a>
-                     <a href="#" class="nav-link"><i class="fab fa-dribbble"></i></a>
+                     <a href="/shop" class="nav-link"><i class="fa-solid fa-shop"></i></a>
+                     <a href="/sepetin" class="nav-link"><i class="fa-solid fa-cart-shopping"></i>
+                     </a>
                </ul>
            </div>
     </nav>
