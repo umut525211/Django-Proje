@@ -54,9 +54,9 @@ img {
                     <p class="secondary-title text-secondary display-3">
                             Toplam Fiyat: {{urunler.toplam}}</p>
                         
-                    <input type="number" name="adett" min="0" value="0" max="{{urunler.adet}}"></input>
+                    <input type="number" name="adett" min="-{{urunler.adet}}" value="0" max="100"></input>
                     
-                    <button  type="submit" class="btn">Sepetten Çıkar</button>
+                    <button  type="submit" class="btn">Sepeti Güncelle</button>
                     
                         </form>
                     
@@ -66,6 +66,14 @@ img {
     </div>
 {% endfor %}
         </div>
+    </div>
+
+    <div class="text-center">
+        <form method="post" action="{% url 'satin' site %}">
+            {% csrf_token %}
+            <input type="submit"  class="btn btn-primary secondary-title text-light"value="Satın Al">
+        </form>
+        <h1>Toplam Ücret: {{toplam}}</h1>
     </div>
 </section>
 </main>

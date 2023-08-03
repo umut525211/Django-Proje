@@ -384,23 +384,26 @@ def delete_user(request, site,x):
 def sepet(request, x,site):
    site="/"+site
    adet = int(request.POST['adett'])
-   urunnn = Urunn.objects.get(id=x)
-   fiyat = int(urunnn.fiyat)
-   toplam = adet * fiyat
-   sepe=Sepet.objects.filter(adi=urunnn.adi).first()
-   if not sepe:
-      sepet=Sepet(adi=urunnn.adi,resim=urunnn.resim,fiyat=urunnn.fiyat,adet=adet,toplam=toplam,onay=0)
-      sepet.save()
-   else:
-      sepe.adet += adet
-      sepe.toplam=sepe.fiyat*sepe.adet
-      sepe.save()
+   if adet>0:
+      urunnn = Urunn.objects.get(id=x)
+      fiyat = int(urunnn.fiyat)
+      toplam = adet * fiyat
+      sepe=Sepet.objects.filter(adi=urunnn.adi,onay=0).first()
+      if not sepe:
+         sepet=Sepet(adi=urunnn.adi,resim=urunnn.resim,fiyat=urunnn.fiyat,adet=adet,toplam=toplam,onay=0)
+         sepet.save()
+      else:
+            sepe.adet += adet
+            sepe.toplam=sepe.fiyat*sepe.adet
+            sepe.save()
+            return redirect(site)
+     
    return redirect(site)
 
 def sepet_cikar(request, x,site):
    adet = int(request.POST['adett'])
-   sep = Sepet.objects.get(id=x)
-   kalan=sep.adet-adet
+   sep = Sepet.objects.get(id=x,onay=0)
+   kalan=sep.adet+adet
    toplam =sep.fiyat*kalan
    site="/"+site
    if kalan==0:
@@ -414,7 +417,24 @@ def sepet_cikar(request, x,site):
   
 def sepett(request):
    site="sepetin"
+   toplam=0
    Giris=request.session.get('kullanici_adi', None)
    rol=request.session.get('rol',None)
    sepet= Sepet.objects.filter(onay=0)
-   return render(request, 'shop/sepet.html', {'Giris': Giris,'rol':rol,"sepet":sepet,"site":site})
+   for x in sepet:
+      toplam+=x.toplam
+   return render(request, 'shop/sepet.html', {'Giris': Giris,'rol':rol,"sepet":sepet,"site":site,"toplam":toplam})
+
+def satin(request,site):
+   site="/"+site
+   Giris=request.session.get('kullanici_adi', None)
+   if Giris==None:
+      sit="/giris"
+      return redirect(sit)
+   else:
+      sepet= Sepet.objects.filter(onay=0)
+      for x in sepet:
+         x.alan=Giris
+         x.onay=1
+         x.save()
+      return redirect(site)

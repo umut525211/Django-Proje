@@ -21,13 +21,9 @@ img {
 </head>
 <body>
     {% include 'siteler/header.html' %} 
-           
-    <!-- .Header -->
-
-    <!-- Main Site -->
+        
        <main id="site-main">
 
-            <!-- Blog Post Section -->
                 <section id="posts">
                     <div class="container">
                         <div class="grid">
@@ -49,7 +45,8 @@ img {
                     </a>
                     <p class="secondary-title text-secondary display-3">
                         Adet Sayısı: {{urunler.adet}}</p>
-                   
+                    <p class="secondary-title text-secondary display-3">
+                            Fiyat: {{urunler.fiyat}}</p>
                             <input type="number" name="adett" min="0" value="0" max="{{urunler.adet}}"></input>
                             <button  type="submit" class="btn">Sepete Ekle</button>
                         </form>

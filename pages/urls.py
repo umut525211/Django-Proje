@@ -30,6 +30,7 @@ urlpatterns = [
     path('urun_guncelle/<int:x>', views.urun_guncelle, name='urun_guncelle'),
     path('delete_comment/<int:x>/<str:site>', views.delete_comment, name='delete_comment'),
     path('sepet/<int:x>/<str:site>', views.sepet, name='sepet'),
+    path('satin/<str:site>', views.satin,name='satin'),
     path('sepet_cikar/<int:x>/<str:site>', views.sepet_cikar, name='sepet_cikar'),
     path('delete_user/<str:site>/<int:x>', views.delete_user, name='delete_user'),
 ]
